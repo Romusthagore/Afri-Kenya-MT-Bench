@@ -1,0 +1,27 @@
+model_name: McGill-NLP/AfriqueQwen3.5-4B
+torch_dtype: bfloat16
+local_files_only: false
+
+training:
+  learning_rate: 0.00001
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8
+  num_train_epochs: 3
+  max_length: 512
+  warmup_steps: 0
+  lr_scheduler_type: cosine
+  bf16: true
+  gradient_checkpointing: true
+  seed: 42
+
+evaluation:
+  strategy: steps
+  eval_steps: 500
+  logging_steps: 10
+
+checkpoint:
+  save_strategy: steps
+  save_steps: 500
+  save_total_limit: 2
+  report_to: none
